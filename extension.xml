@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root version="3.0">
+	<announcement text="Kraken GM Icon v1.0\rThe Kraken. Options > GM Icon picks the GM's chat picture." font="emotefont" icon="kgmi_01_kraken" />
+
+	<properties>
+		<name>Feature: Kraken GM Icon</name>
+		<version>1.0</version>
+		<loadorder>200</loadorder>
+		<author>The Kraken</author>
+		<description>Pick the GM's chat picture from Options: ten bundled icons or any of your own images.</description>
+		<ruleset>Any</ruleset>
+	</properties>
+
+	<base>
+		<icon name="kgmi_01_kraken" file="graphics/icons/kgmi_01_kraken.png" />
+		<icon name="kgmi_02_d20" file="graphics/icons/kgmi_02_d20.png" />
+		<icon name="kgmi_03_dm_screen" file="graphics/icons/kgmi_03_dm_screen.png" />
+		<icon name="kgmi_04_hooded" file="graphics/icons/kgmi_04_hooded.png" />
+		<icon name="kgmi_05_dragon_eye" file="graphics/icons/kgmi_05_dragon_eye.png" />
+		<icon name="kgmi_06_crown" file="graphics/icons/kgmi_06_crown.png" />
+		<icon name="kgmi_07_quill" file="graphics/icons/kgmi_07_quill.png" />
+		<icon name="kgmi_08_crystal_ball" file="graphics/icons/kgmi_08_crystal_ball.png" />
+		<icon name="kgmi_09_skull_candle" file="graphics/icons/kgmi_09_skull_candle.png" />
+		<icon name="kgmi_10_tower" file="graphics/icons/kgmi_10_tower.png" />
+
+		<includefile source="strings/strings_kgmi.xml" />
+		<includefile source="utility/utility_kgmi.xml" />
+
+		<script name="KrakenGMIcon" file="scripts/manager_kgmi.lua" />
+	</base>
+</root>

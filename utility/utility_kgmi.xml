@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root>
+	<!-- Options > GM Icon: the bundled icons on top, the asset browser below (like Background Decal) -->
+	<windowclass name="kgmi_select" copy="tokenbag">
+		<sizelimits>
+			<minimum width="675" height="640" />
+		</sizelimits>
+		<script file="utility/scripts/kgmi_select.lua" />
+		<sheetdata>
+			<sub_content_top name="sub_bundled" insertbefore="sub_controls_top">
+				<anchored height="118" />
+				<class>kgmi_bundled</class>
+			</sub_content_top>
+
+			<sub_content_buttons_bottom name="sub_buttons" insertbefore="filter">
+				<class>kgmi_select_buttons</class>
+			</sub_content_buttons_bottom>
+
+			<assetview_content name="assets">
+				<nodrag />
+			</assetview_content>
+		</sheetdata>
+	</windowclass>
+
+	<template name="kgmi_tile">
+		<genericcontrol>
+			<script>
+				local _sIcon = "";
+				function setData(sIcon)
+					_sIcon = sIcon;
+					setIcon(sIcon);
+					setTooltipText(Interface.getString((sIcon:gsub("^kgmi_", "kgmi_name_"))));
+				end
+				function getData()
+					return _sIcon;
+				end
+				function onClickDown()
+					return true;
+				end
+				function onClickRelease()
+					WindowManager.callOuterWindowFunction(window, "handleBundled", _sIcon);
+					return true;
+				end
+			</script>
+		</genericcontrol>
+	</template>
+
+	<windowclass name="kgmi_bundled">
+		<margins control="0,0,0,5" />
+		<script>
+			local TILE = 58;
+			local GAP = 6;
+			local TOP = 24;
+			local _tTiles = {};
+			function onInit()
+				for i,sIcon in ipairs(KrakenGMIcon.ICONS) do
+					local c = createControl("kgmi_tile", "tile_" .. i);
+					c.setStaticBounds(10 + (i - 1) * (TILE + GAP), TOP, TILE, TILE);
+					c.setData(sIcon);
+					_tTiles[sIcon] = c;
+				end
+				update();
+			end
+			function update()
+				local sKind, sName = KrakenGMIcon.parseChoice(KrakenGMIcon.getChoice());
+				for sIcon,c in pairs(_tTiles) do
+					if sKind == "icon" and sName == sIcon then
+						c.setBackColor("70D2B56B");
+					else
+						c.setBackColor(nil);
+					end
+				end
+				current.setValue(string.format(Interface.getString("kgmi_label_current"), KrakenGMIcon.getChoiceLabel()));
+			end
+		</script>
+		<sheetdata>
+			<label name="label_bundled">
+				<anchored position="insidetopleft" offset="10,2" />
+				<static textres="kgmi_label_bundled" />
+			</label>
+			<stringcontrol name="current">
+				<anchored position="insidetopright" offset="10,2" width="320" />
+				<font>sheetlabel</font>
+				<right />
+				<readonly />
+				<nodrag />
+			</stringcontrol>
+			<label name="label_own">
+				<anchored position="insidetopleft" offset="10,90" />
+				<static textres="kgmi_label_own" />
+			</label>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="kgmi_select_buttons">
+		<margins control="0,0,0,5" />
+		<sheetdata>
+			<button_text name="button_default">
+				<anchored position="insidetopleft" offset="20,5" width="120" />
+				<state textres="kgmi_button_default" />
+				<script>
+					function onButtonPress()
+						WindowManager.callOuterWindowFunction(window, "handleFGDefault");
+					end
+				</script>
+			</button_text>
+			<button_text name="button_cancel">
+				<anchored position="insidetopright" offset="20,5" width="60" />
+				<state textres="button_dialog_cancel" />
+				<script>
+					function onButtonPress()
+						WindowManager.callOuterWindowFunction(window, "handleCancel");
+					end
+				</script>
+			</button_text>
+			<button_text name="button_ok">
+				<anchored position="insidetopright" offset="90,5" width="60" />
+				<state textres="button_dialog_ok" />
+				<script>
+					function onButtonPress()
+						WindowManager.callOuterWindowFunction(window, "handleOK");
+					end
+				</script>
+			</button_text>
+		</sheetdata>
+	</windowclass>
+</root>

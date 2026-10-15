@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root>
+	<string name="option_label_kgmi">GM Icon</string>
+	<string name="kgmi_select_window_title">GM Icon</string>
+	<string name="kgmi_label_bundled">Kraken icons</string>
+	<string name="kgmi_label_own">Or pick one of your own images below</string>
+	<string name="kgmi_label_current">Now: %s</string>
+	<string name="kgmi_current_default">Fantasy Grounds default</string>
+	<string name="kgmi_button_default">FG Default</string>
+
+	<string name="kgmi_name_01_kraken">The Kraken</string>
+	<string name="kgmi_name_02_d20">d20</string>
+	<string name="kgmi_name_03_dm_screen">GM Screen</string>
+	<string name="kgmi_name_04_hooded">Hooded Storyteller</string>
+	<string name="kgmi_name_05_dragon_eye">Dragon Eye</string>
+	<string name="kgmi_name_06_crown">Crown</string>
+	<string name="kgmi_name_07_quill">Quill and Scroll</string>
+	<string name="kgmi_name_08_crystal_ball">Crystal Ball</string>
+	<string name="kgmi_name_09_skull_candle">Skull and Candle</string>
+	<string name="kgmi_name_10_tower">Castle Tower</string>
+</root>
